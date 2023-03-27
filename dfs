@@ -1,0 +1,26 @@
+
+g={1:[2,3],2:[5,6],3:[7,8],4:[],5:[9],6:[10],9:[12],12:[],10:[],7:[],8:[4]}
+s,tmp,visited,path=[1],[],[],[]
+goal=10
+child_parent_graph ={1:None}
+while s: 
+    v=s.pop()
+    if v in visited:
+      continue
+    visited.append(v)
+   # print(v,end='')
+    if v==goal :
+       path.insert(0,goal)
+       while goal !=1 :
+          goal=child_parent_graph[goal]
+          path.insert(0, goal)
+       break
+
+    for i in g[v]:
+        tmp.append(i)
+        child_parent_graph[i]=v
+        print(child_parent_graph)
+    while tmp:
+        s.append(tmp.pop())
+
+print (path)
